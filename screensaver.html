@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  <title>CodePen - Canvas API - Matrix Effect</title>
+
+
+
+
+
+  <script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=xMs95u20Lv5joiInCeAyP-M2EVthX7DbdYSYeAFe905c8FBn1CtbAERNAUikcW3zNr45WUzK5tTcjF-AT2yJNYakw-Ph3ZkslewWu4FZzq8" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://ff.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jZHBuLmlvL2hhcnJ5aGVtYW4vZnVsbHBhZ2UvWkVFUFJiYT9lZGl0b3JzPTEwMTA"/><script>
+  window.console = window.console || function(t) {};
+</script>
+
+
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <body style="margin: 0; background: #000; overflow: hidden;">
+  <canvas></canvas>
+</body>
+    <script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+
+
+
+      <script id="rendered-js" >
+const C = document.querySelector("canvas"),
+$ = C.getContext("2d"),
+W = C.width = window.innerWidth,
+H = C.height = window.innerHeight;
+
+const str = "А+Б0В-Г1Д=Е2Ё Ж3З И4Й К5Л М6Н О7П Р8С Т9У Ф!Х Ц?Ч Ш.ЩЪ,Ы Ь:ЭЮ;Я",
+matrix = str.split("");
+
+let font = 11,
+col = W / font,
+arr = [];
+
+for (let i = 0; i < col; i++) arr[i] = 1;
+
+function draw() {
+  $.fillStyle = "rgba(0,0,0,.05)";
+  $.fillRect(0, 0, W, H);
+  $.fillStyle = "#0f0";
+  $.font = font + "px system-ui";
+  for (let i = 0; i < arr.length; i++) {
+    let txt = matrix[Math.floor(Math.random() * matrix.length)];
+    $.fillText(txt, i * font, arr[i] * font);
+    if (arr[i] * font > H && Math.random() > 0.975) arr[i] = 0;
+    arr[i]++;
+  }
+}
+
+setInterval(draw, 123);
+
+window.addEventListener("resize", () => location.removedByCodePen());
+//# sourceURL=pen.js
+    </script>
+
+
+
+</body>
+
+</html>
